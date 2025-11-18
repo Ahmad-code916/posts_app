@@ -1,7 +1,7 @@
 import 'package:application_new/post_app_screens/comment_screen/comment_screen.dart';
 import 'package:application_new/post_app_screens/create_post/create_post.dart';
 import 'package:application_new/post_app_screens/likes_screen/likes_screen.dart';
-import 'package:application_new/post_app_screens/screen_one/screen_one_new_controller.dart';
+import 'package:application_new/post_app_screens/home_screen/home_screen_controller.dart';
 import 'package:application_new/utils/user_base_controller.dart';
 import 'package:application_new/widgets/flloating_action_button.dart';
 import 'package:cached_network_image/cached_network_image.dart';
