@@ -2,6 +2,7 @@ import 'package:application_new/post_app_screens/comment_screen/comment_screen.d
 import 'package:application_new/post_app_screens/create_post/create_post.dart';
 import 'package:application_new/post_app_screens/likes_screen/likes_screen.dart';
 import 'package:application_new/post_app_screens/home_screen/home_screen_controller.dart';
+import 'package:application_new/post_app_screens/profile_details/profile_details.dart';
 import 'package:application_new/utils/user_base_controller.dart';
 import 'package:application_new/widgets/flloating_action_button.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -24,10 +25,15 @@ class ScreenOneNew extends StatelessWidget {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            CircleAvatar(
-              radius: 25,
-              backgroundImage: CachedNetworkImageProvider(
-                UserBaseController.userData.userImage ?? "",
+            GestureDetector(
+              onTap: () {
+                Get.to(() => ProfileDetails());
+              },
+              child: CircleAvatar(
+                radius: 25,
+                backgroundImage: CachedNetworkImageProvider(
+                  UserBaseController.userData.userImage ?? "",
+                ),
               ),
             ),
             Text('Posts', style: TextStyle(color: Colors.white)),

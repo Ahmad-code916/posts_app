@@ -1,12 +1,9 @@
 import 'dart:io';
-import 'dart:math' as math;
-
 import 'package:application_new/models/user_model_post_app.dart';
 import 'package:application_new/post_app_screens/login_screen/login_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -77,6 +74,7 @@ class SignupScreenController extends GetxController {
           userName: nameController.text.trim(),
           userImage: url,
           id: user.user?.uid ?? "",
+          email: emailController.text.trim(),
         );
         FirebaseFirestore.instance
             .collection(UserModelPostApp.tableName)
@@ -97,15 +95,5 @@ class SignupScreenController extends GetxController {
         );
       }
     }
-  }
-
-  static String generateRandomId() {
-    const String chars =
-        'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    final math.Random random = math.Random();
-    return List.generate(
-      15,
-      (index) => chars[random.nextInt(chars.length)],
-    ).join();
   }
 }

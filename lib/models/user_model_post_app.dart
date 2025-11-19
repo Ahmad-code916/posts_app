@@ -5,14 +5,26 @@ class UserModelPostApp {
   String? userName;
   String? userImage;
   String? id;
+  String? email; // ✅ NEW FIELD
 
-  UserModelPostApp({this.userName, this.userImage, this.id});
+  UserModelPostApp({
+    this.userName,
+    this.userImage,
+    this.id,
+    this.email, // added
+  });
 
-  UserModelPostApp copyWith({String? userName, String? userImage, String? id}) {
+  UserModelPostApp copyWith({
+    String? userName,
+    String? userImage,
+    String? id,
+    String? email, // added
+  }) {
     return UserModelPostApp(
       userName: userName ?? this.userName,
       userImage: userImage ?? this.userImage,
       id: id ?? this.id,
+      email: email ?? this.email, // added
     );
   }
 
@@ -21,6 +33,7 @@ class UserModelPostApp {
       'userName': userName,
       'userImage': userImage,
       'id': id,
+      'email': email, // added
     };
   }
 
@@ -29,6 +42,7 @@ class UserModelPostApp {
       userName: map['userName'] != null ? map['userName'] as String : null,
       userImage: map['userImage'] != null ? map['userImage'] as String : null,
       id: map['id'] != null ? map['id'] as String : null,
+      email: map['email'] != null ? map['email'] as String : null, // added
     );
   }
 }

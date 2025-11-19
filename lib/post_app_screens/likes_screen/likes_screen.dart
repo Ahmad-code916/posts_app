@@ -1,5 +1,4 @@
 import 'package:application_new/post_app_screens/likes_screen/likes_screen_controller.dart';
-import 'package:application_new/utils/user_base_controller.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
