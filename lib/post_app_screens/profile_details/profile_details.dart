@@ -40,10 +40,7 @@ class ProfileDetails extends StatelessWidget {
                   SizedBox(height: 30),
                   Text('Name', style: TextStyle(fontSize: 20)),
                   SizedBox(height: 10),
-                  TextFormField(
-                    // initialValue: UserBaseController.userData.userName ?? "",
-                    controller: controller.nameController,
-                  ),
+                  TextFormField(controller: controller.nameController),
                   SizedBox(height: 30),
                   Center(
                     child: ElevatedButton(

@@ -1,3 +1,4 @@
+import 'package:application_new/models/comment_model..dart';
 import 'package:application_new/models/post_model.dart';
 import 'package:application_new/models/user_model_post_app.dart';
 import 'package:application_new/post_app_screens/login_screen/login_screen.dart';
@@ -12,6 +13,8 @@ class ProfileDetailsController extends GetxController {
   TextEditingController passwordController = TextEditingController();
   List<UserModelPostApp> users = [];
   List<PostModel> posts = [];
+  List<PostModel> postsToDelete = [];
+  List<CommentModel> comments = [];
   bool isLoading = false;
   String? password;
 
@@ -34,6 +37,8 @@ class ProfileDetailsController extends GetxController {
       );
     }
   }
+
+  void getComments() async {}
 
   void getPosts() async {
     try {
@@ -142,6 +147,7 @@ class ProfileDetailsController extends GetxController {
                                 .update({'likedBy': likedBYUpdated});
                           }
                         }
+                        deletePosts();
                         await FirebaseAuth.instance.currentUser!.delete();
                         Get.offAll(() => LoginScreen());
                         update();
@@ -162,6 +168,19 @@ class ProfileDetailsController extends GetxController {
       Get.dialog(
         AlertDialog(title: Text('Error'), content: Text(e.toString())),
       );
+    }
+  }
+
+  void deletePosts() async {
+    postsToDelete =
+        posts.where((element) {
+          return element.user!.id == UserBaseController.userData.id;
+        }).toList();
+    for (var i in postsToDelete) {
+      await FirebaseFirestore.instance
+          .collection(PostModel.tableName)
+          .doc(i.id)
+          .delete();
     }
   }
 
