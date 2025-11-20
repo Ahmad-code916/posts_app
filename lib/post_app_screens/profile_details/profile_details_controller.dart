@@ -38,8 +38,6 @@ class ProfileDetailsController extends GetxController {
     }
   }
 
-  void getComments() async {}
-
   void getPosts() async {
     try {
       final post =
@@ -124,11 +122,10 @@ class ProfileDetailsController extends GetxController {
                         );
                       } else {
                         password = passwordController.text.trim();
-                        final user = await FirebaseAuth.instance
-                            .signInWithEmailAndPassword(
-                              email: UserBaseController.userData.email ?? "",
-                              password: password ?? "",
-                            );
+                        await FirebaseAuth.instance.signInWithEmailAndPassword(
+                          email: UserBaseController.userData.email ?? "",
+                          password: password ?? "",
+                        );
                         await FirebaseFirestore.instance
                             .collection(UserModelPostApp.tableName)
                             .doc(UserBaseController.userData.id)

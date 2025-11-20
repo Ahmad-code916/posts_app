@@ -16,7 +16,7 @@ class LoginScreen extends StatelessWidget {
         backgroundColor: Colors.redAccent,
       ),
       body: GetBuilder<LoginScreenController>(
-        builder: (context) {
+        builder: (controller) {
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Column(
@@ -30,11 +30,17 @@ class LoginScreen extends StatelessWidget {
                 TextFormField(
                   decoration: InputDecoration(hintText: 'Email'),
                   controller: controller.emailController,
+                  onTapUpOutside: (event) {
+                    FocusScope.of(context).unfocus();
+                  },
                 ),
                 SizedBox(height: 30),
                 TextFormField(
                   decoration: InputDecoration(hintText: 'Password'),
                   controller: controller.passwordController,
+                  onTapOutside: (event) {
+                    FocusScope.of(context).unfocus();
+                  },
                 ),
                 SizedBox(height: 30),
                 ElevatedButton(
@@ -46,7 +52,7 @@ class LoginScreen extends StatelessWidget {
                   },
                   child:
                       controller.isLoading == true
-                          ? CircularProgressIndicator()
+                          ? CircularProgressIndicator(color: Colors.white)
                           : Text(
                             'Login',
                             style: TextStyle(color: Colors.white),

@@ -21,64 +21,71 @@ class ProfileDetails extends StatelessWidget {
         backgroundColor: Colors.redAccent,
       ),
       body: GetBuilder<ProfileDetailsController>(
-        builder: (context) {
+        builder: (controller) {
           return Padding(
             padding: const EdgeInsets.all(16),
             child: SizedBox(
               width: double.infinity,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Center(
-                    child: CircleAvatar(
-                      radius: 50,
-                      backgroundImage: CachedNetworkImageProvider(
-                        UserBaseController.userData.userImage ?? "",
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 30),
-                  Text('Name', style: TextStyle(fontSize: 20)),
-                  SizedBox(height: 10),
-                  TextFormField(controller: controller.nameController),
-                  SizedBox(height: 30),
-                  Center(
-                    child: ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor: WidgetStatePropertyAll(
-                          Colors.redAccent,
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Center(
+                      child: CircleAvatar(
+                        radius: 50,
+                        backgroundImage: CachedNetworkImageProvider(
+                          UserBaseController.userData.userImage ?? "",
                         ),
                       ),
-                      onPressed: () {
-                        controller.updateUserData();
-                      },
-                      child:
-                          controller.isLoading == true
-                              ? CircularProgressIndicator(color: Colors.white)
-                              : Text(
-                                'Update',
-                                style: TextStyle(color: Colors.white),
-                              ),
                     ),
-                  ),
-                  SizedBox(height: 30),
-                  Center(
-                    child: ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor: WidgetStatePropertyAll(
-                          Colors.redAccent,
+                    SizedBox(height: 30),
+                    Text('Name', style: TextStyle(fontSize: 20)),
+                    SizedBox(height: 10),
+                    TextFormField(
+                      controller: controller.nameController,
+                      onTapOutside: (event) {
+                        FocusScope.of(context).unfocus();
+                      },
+                    ),
+                    SizedBox(height: 30),
+                    Center(
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor: WidgetStatePropertyAll(
+                            Colors.redAccent,
+                          ),
+                        ),
+                        onPressed: () {
+                          controller.updateUserData();
+                        },
+                        child:
+                            controller.isLoading == true
+                                ? CircularProgressIndicator(color: Colors.white)
+                                : Text(
+                                  'Update',
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                      ),
+                    ),
+                    SizedBox(height: 30),
+                    Center(
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor: WidgetStatePropertyAll(
+                            Colors.redAccent,
+                          ),
+                        ),
+                        onPressed: () {
+                          controller.deleteAccount();
+                        },
+                        child: Text(
+                          'Delete Account',
+                          style: TextStyle(color: Colors.white),
                         ),
                       ),
-                      onPressed: () {
-                        controller.deleteAccount();
-                      },
-                      child: Text(
-                        'Delete',
-                        style: TextStyle(color: Colors.white),
-                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           );

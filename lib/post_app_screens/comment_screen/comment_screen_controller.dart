@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:application_new/models/comment_model..dart';
 import 'package:application_new/models/post_model.dart';
 import 'package:application_new/utils/app_functions.dart';
@@ -33,7 +32,6 @@ class CommentScreenController extends GetxController {
                   event.docs.map((e) {
                     return CommentModel.fromMap(e.data());
                   }).toList();
-              print("^^^^^^^^^^^^^^^^^^^^^${comments.length}");
               update();
             }
           });

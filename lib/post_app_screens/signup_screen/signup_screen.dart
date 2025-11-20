@@ -16,7 +16,7 @@ class SignupScreen extends StatelessWidget {
         backgroundColor: Colors.redAccent,
       ),
       body: GetBuilder<SignupScreenController>(
-        builder: (context) {
+        builder: (controller) {
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: SingleChildScrollView(
@@ -63,16 +63,25 @@ class SignupScreen extends StatelessWidget {
                     onTapOutside: (event) {},
                     decoration: InputDecoration(hintText: 'Name'),
                     controller: controller.nameController,
+                    onTapUpOutside: (event) {
+                      FocusScope.of(context).unfocus();
+                    },
                   ),
                   SizedBox(height: 30),
                   TextFormField(
                     decoration: InputDecoration(hintText: 'Email'),
                     controller: controller.emailController,
+                    onTapUpOutside: (event) {
+                      FocusScope.of(context).unfocus();
+                    },
                   ),
                   SizedBox(height: 30),
                   TextFormField(
                     decoration: InputDecoration(hintText: 'Password'),
                     controller: controller.passwordController,
+                    onTapUpOutside: (event) {
+                      FocusScope.of(context).unfocus();
+                    },
                   ),
                   SizedBox(height: 30),
                   ElevatedButton(
@@ -84,7 +93,7 @@ class SignupScreen extends StatelessWidget {
                     },
                     child:
                         controller.isLoading == true
-                            ? CircularProgressIndicator()
+                            ? CircularProgressIndicator(color: Colors.white)
                             : Text(
                               'Sign up',
                               style: TextStyle(color: Colors.white),
